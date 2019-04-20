@@ -1,0 +1,716 @@
+
+/* 
+    De maniere générale il faut éviter l'utilisation de valeur fix par exemple : 
+        width: 410px;
+        margin: 75px auto 50px auto;
+    
+        Logiquement les id seront réserver à l'usage du js et les class pour le style, ex : 
+            #instructions-ancre,
+            #reservation-ancre {
+                padding-top: 60px;
+            }
+            privilégié : 
+            .instructions,
+            .reservation {
+                padding-top: 60px;
+            }
+
+        Les valeurs relative tel que em ou rem seront à privilégiés aussi ex :
+            60px =  3.75rem
+*/
+
+/* -------- ANIMATION -------- */
+
+@keyframes animation-fade {
+    from {
+        opacity: .6
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes animation-fade-hover {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: .8
+    }
+}
+
+@keyframes animation-fade-hover-retour {
+    from {
+        opacity: .8
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes animation_ancre {
+
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.2);
+    }
+}
+
+@keyframes animation_ancre_retour {
+
+    0% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* -------- ANCRE -------- */
+
+.instructions-ancre,
+.reservation-ancre {
+    padding-top: 60px;
+}
+
+/* -------- PAGE -------- */
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+    background-color: #dadada;
+    font-family: 'Patrick Hand', cursive;
+}
+
+li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.section-titre {
+    color: #ff4d4d;
+    text-align: center;
+    width: 410px;
+    margin: 75px auto 50px auto;
+    border-bottom: 1px solid black;
+    text-shadow: -2px 0px 1px black;
+    font-size: 50px;
+}
+
+.show {
+    display: inline;
+}
+
+.hide {
+    display: none;
+}
+
+
+/* -------- HEADER -------- */
+
+header {
+    background-color: black;
+    -webkit-box-shadow: 0px 0px 1px 0px rgb(0, 0, 0);
+    -moz-box-shadow: 0px 0px 1px 0px rgb(0, 0, 0);
+    box-shadow: 0px 0px 1px 0px rgb(0, 0, 0);
+    height: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 10;
+}
+
+.logo {
+    margin-left: 50px;
+    height: 30px;
+}
+
+.title {
+    margin: 0px;
+    padding: 10px;
+    display: inline;
+    color: white;
+}
+
+.red {
+    color: #ff4d4d;
+}
+
+.ancre {
+    display: flex;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+}
+
+.ancre li {
+    margin-left: 20px;
+    margin-right: 20px;
+    animation: animation_ancre_retour 0.5s;
+    cursor: pointer;
+}
+
+.ancre li:last-child {
+    margin-right: 50px;
+}
+
+.ancre li:hover {
+    animation: animation_ancre 0.5s forwards;
+}
+
+.ancre a {
+    color: white;
+}
+
+.active {
+    border-top: 2px solid #ff4d4d;
+}
+
+/* -------- SLIDER -------- */
+
+.img-slide {
+    width: 100%;
+    -moz-box-shadow: 0 1px 4px 5px rgb(0, 0, 0);
+    -webkit-box-shadow: 0 1px 4px 5px rgb(0, 0, 0);
+    -o-box-shadow: 0 1px 4px 5px rgb(0, 0, 0);
+    box-shadow: 0 1px 4px 5px rgb(0, 0, 0);
+}
+
+.slide-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(140%); /* 50% c'est suffisant...*/
+    transition: 0.5s ease;
+    font-size: 30px;
+    color: white;
+}
+
+.prev {
+    padding-left: 10px; /* Ici il manque un left à 0 */
+}
+
+.next {
+    padding-right: 10px;
+    right: 0;
+}
+
+.prev:hover,
+.next:hover {
+    color: black;
+}
+
+.title-slide,
+.text {
+    text-shadow: -2px 0px 1px rgb(0, 0, 0);
+}
+
+.title-slide {
+    font-size: 30px;
+
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    line-height: 28px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 150px;
+}
+
+.text p {
+    margin: 0px;
+}
+
+.animation {
+    animation-name: animation-fade;
+    animation-duration: 1s;
+}
+
+.icone-marker {
+    width: 5%;
+}
+
+.croix {
+    width: 20px;
+}
+
+.reservation-img {
+    border-radius: 5px;
+}
+
+.reservation-img,
+.compteur-img {
+    margin: 10px;
+}
+
+.icone-station {
+    height: 35px;
+}
+
+/* -------- GOOGLE MAP ET STATIONS -------- */
+
+.map-info {
+    display: flex;
+    align-items: center;
+    margin: 0 50px;
+}
+
+.map {
+    margin: 30px;
+    height: 700px;
+    width: 100%;
+}
+
+.informations {
+    height: 630px;
+    width: 30%;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 30px;
+    background-color: #e8e8e8;
+}
+
+.titre-informations {
+    margin: 0px;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    background-color: black;
+}
+
+.contenu-text-informations {
+    padding: 20px;
+}
+
+.text-informations {
+    font-size: 18px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+    margin: auto;
+}
+
+.gm-style .gm-style-iw {
+    font-weight: 800;
+}
+
+.bordure {
+    border-top: 1px solid #ff4d4d;
+    border-bottom: 1px solid #ff4d4d;
+}
+
+.vert {
+    color: green;
+}
+
+.rouge {
+    color: red;
+}
+
+.orange {
+    color: #ff6c00;
+}
+
+.fa-times-circle {
+    font-size: 28px;
+    color: black;
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.informations-stations {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.informations-stations-span {
+    font-weight: normal;
+}
+
+.reservation {
+    border: 2px solid white;
+    color: white;
+    font-size: 20px;
+    background-color: black;
+    border-radius: 5px;
+    font-family: 'Patrick Hand', cursive;
+    cursor: pointer;
+    margin-top: 20px;
+    animation: animation-fade-hover-retour 1.5s ease forwards;
+}
+
+.reservation:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid white;
+    animation: animation-fade-hover 1.5s ease forwards;
+}
+
+.reservation-txt {
+    color: #FF3333;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* -------- CANVAS -------- */
+
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    border-radius: 10px;
+}
+
+.close {
+    float: right;
+}
+
+.titre-signature {
+    color: black;
+    font-size: 20px;
+}
+
+.canvas-signature {
+    text-align: center;
+}
+
+.signature {
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #dadada;
+}
+
+.div-input {
+    margin: 20px;
+}
+
+.validation,
+.effacer {
+    margin-right: 15px;
+}
+
+.validation,
+.effacer,
+.annulation,
+.annuler {
+    border: 1px solid white;
+    color: white;
+    font-size: 18px;
+    background-color: black;
+    border-radius: 5px;
+    font-family: 'Patrick Hand', cursive;
+    cursor: pointer;
+    animation: animation-fade-hover-retour 1s ease forwards;
+}
+
+.annulation {
+    background-color: #272727;
+    margin-top: 13px;
+    padding: 5px;
+    color: white;
+    animation: animation-fade-hover-retour 1s ease forwards;
+}
+
+.validation:hover,
+.effacer:hover,
+.annuler:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: animation-fade-hover 1s ease forwards;
+}
+
+.annulation:hover {
+    background-color: #272727;
+    animation: animation-fade-hover 1s ease forwards;
+}
+
+
+/* -------- BAS DE PAGE -------- */
+
+.temps {
+    position: relative;
+    bottom: 0px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #e8e8e8;
+    color: black;
+    font-size: 25px;
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+    height: 115px;
+    width: 80%;
+}
+
+
+.texteCompteur {
+    margin: 0px;
+}
+
+/* -------- FOOTER -------- */
+
+footer {
+    margin-top: 30px;
+    height: 20px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    -webkit-box-shadow: 0px 4px 18px 1px rgba(163, 163, 163, 1);
+    -moz-box-shadow: 0px 4px 18px 1px rgba(163, 163, 163, 1);
+    box-shadow: 0px 4px 18px 1px rgba(163, 163, 163, 1);
+
+}
+
+
+/* -------- RESPONSIVE PHABLETTES -------- */
+
+@media (min-width: 480px) and (max-width: 768px) {
+    .logo {
+        height: 20px;
+    }
+    .title {
+        font-size: 20px;
+    }
+    .ancre {
+        font-size: 15px;
+    }
+
+    /* -------- TITRE -------- */
+    .section-titre {
+        font-size: 25px;
+    }
+
+    /* -------- SLIDER -------- */
+    .title-slide {
+        font-size: 20px;
+    }
+    .text {
+        font-size: 12px;
+        padding-top: 123px;
+    }
+    .fleche-img {
+        width: 20%;
+    }
+
+    /* -------- RESERVATION ET SIGNATURE -------- */
+    .legende {
+        font-size: 18px;
+    }
+    .informations-stations,
+    .reservation,
+    .validation,
+    .effacer,
+    .informations-stations,
+    .titre-signature {
+        font-size: 15px;
+    }
+}
+
+/* -------- RESPONSIVE TABLETTE -------- */
+
+@media all and (max-width: 768px) {
+    /* -------- HEADER -------- */
+    .logo {
+        margin-left: 15px;
+        height: 25px;
+    }
+    .title {
+        font-size: 23px;
+    }
+    .ancre {
+        font-size: 18px;
+    }
+
+    /* -------- TITRE -------- */
+    .section-titre {
+        width: 250px;
+        font-size: 28px;
+    }
+
+    /* -------- SLIDER -------- */
+    .title-slide {
+        font-size: 25px;
+    }
+    .text {
+        font-size: 15px;
+        line-height: normal;
+    }
+    .fleche-img {
+        width: 20%;
+    }
+    .icone-marker {
+        width: 4%;
+    }
+    .next,
+    .prev {
+        font-size: 25px;
+        transform: translateY(159%);
+    }
+    .img-map {
+        width: 25%;
+    }
+    .reservation-img {
+        width: 15%;
+    }
+    .compteur-img {
+        margin: auto;
+        width: 60%;
+    }
+    .icone-station {
+        height: 20px;
+    }
+
+    /* -------- RESERVATION ET SIGNATURE -------- */
+    .map-info {
+        margin: auto;
+        flex-direction: column;
+    }
+    .informations {
+        margin: auto;
+        width: 60%;
+        height: 400px;
+    }
+    .legende {
+        font-size: 23px;
+    }
+    .informations-stations,
+    .reservation,
+    .validation,
+    .effacer,
+    .informations-stations,
+    .titre-signature {
+        font-size: 17px;
+    }
+    .modal-content {
+        margin: 25% auto;
+    }
+
+    /* -------- COMPTEUR -------- */
+    .temps {
+        margin-top: 20px;
+        font-size: 20px;
+    }
+
+    /* -------- FOOTER -------- */
+    footer {
+        height: auto;
+        margin-top: 15px;
+    }
+}
+
+/* -------- RESPONSIVE MOBILES -------- */
+
+@media (max-width: 480px) {
+
+    /* -------- HEADER -------- */
+    .logo {
+        margin-left: 6px;
+        height: 20px;
+    }
+    .title {
+        padding: 0px;
+        font-size: 15px;
+    }
+    .ancre {
+        font-size: 15px;
+    }
+    .ancre li {
+        margin-left: 0px;
+    }
+
+    /* -------- SLIDER -------- */
+    .title-slide {
+        font-size: 14px;
+    }
+    .text {
+        font-size: 9px;
+        padding-top: 140px;
+    }
+    .icone-station {
+        height: 12px;
+    }
+    .reservation-img {
+        width: 15%;
+    }
+    .next,
+    .prev {
+        font-size: 15px;
+        transform: translateY(293%);
+    }
+
+    /* -------- MAP -------- */
+    .map {
+        height: 400px;
+    }
+
+    /* -------- RESERVATION -------- */
+    .informations {
+        height: 580px;
+    }
+
+    /* -------- SIGNATURE -------- */
+    .modal-content {
+        margin: 25% auto;
+        width: auto;
+        padding: 0;
+        height: auto;
+    }
+
+    .validation,
+    .effacer {
+        margin: 5px;
+    }
+
+    /* -------- COMPTEUR -------- */
+    .temps {
+        height: 139px;
+        width: 90%;
+    }
+
+    .annuler {
+        font-size: 15px;
+        margin-top: 14px;
+    }
+}
